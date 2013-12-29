@@ -69,7 +69,7 @@ module.exports = function (grunt) {
       },<% } %><% if (stylus) { %>
       stylus: {
         livereload: true,
-        files: ['<%%= yeoman.app %>/styles/{,*/}*.{styl}'],
+        files: ['<%%= yeoman.app %>/styles/{,*/}*.styl'],
         tasks: ['newer:stylus:dist', 'autoprefixer']
       },<% } else { %>
       styles: {
