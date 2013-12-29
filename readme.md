@@ -10,7 +10,7 @@ to use Stylus/Nib.
 I wanted a yeoman generator that used **J**ade, 
 **S**tylus, **C**offeescript, and **E**xpress, so I 
 created this. I was about to name it "angular-jsce" 
-but that didn't look good and "jsce" sounded
+but that didn't look good and "jsce" sounds
 like "juice" hence "angular-juice".
 
 Featuring: 
