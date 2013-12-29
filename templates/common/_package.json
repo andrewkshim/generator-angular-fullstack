@@ -6,9 +6,7 @@
     "mongoose": "~3.5.5",
     "async": "~0.2.9"<% } %><% if (jade) { %>,
     "jade": "latest"<% } %><% if (!jade) { %>,
-    "ejs": "~0.8.4"<% } %><% if (stylus) { %>,    
-    "stylus": "~0.41.3",
-    "nib": "~1.0.1"
+    "ejs": "~0.8.4"
     <% } %>
   },
   "devDependencies": {
