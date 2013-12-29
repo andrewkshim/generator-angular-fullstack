@@ -1,6 +1,11 @@
-# AngularJS + Express Full Stack Generator 
+# AngularJS + Express Generator 
 
-A generator for AngularJS, integrated with an Express `server.js` for full stack development. 
+A generator for AngularJS, integrated with an Express `server.js` for
+full stack development. 
+
+This generator is simply a modification to
+[angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack)
+to use Stylus/Nib. 
 
 Featuring: 
 
@@ -9,12 +14,13 @@ Featuring:
  * Easy deployment workflow.
  * Optional mongoDB integration
  * Support for jade templates
+ * Stylus/nib
 
 ## Usage
 
-Install `generator-angular-fullstack`:
+Install `generator-angular-juice`:
 ```
-npm install -g generator-angular-fullstack
+npm install -g generator-angular-juice
 ```
 
 Make a new directory, and `cd` into it:
@@ -22,9 +28,9 @@ Make a new directory, and `cd` into it:
 mkdir my-new-project && cd $_
 ```
 
-Run `yo angular-fullstack`, optionally passing an app name:
+Run `yo angular-juice`, optionally passing an app name:
 ```
-yo angular-fullstack [app-name]
+yo angular-juice [app-name]
 ```
 
 ### Express
@@ -47,15 +53,15 @@ grunt serve:dist
 
 While deployment should be easy enough with the `grunt dist` build, we provide an extremely simplifed deployment process for heroku.
 
-`yo angular-fullstack:deploy heroku` for generating a deployment ready folder for [heroku.com](http://heroku.com/) from your project files. 
+`yo angular-juice:deploy heroku` for generating a deployment ready folder for [heroku.com](http://heroku.com/) from your project files. 
 
 **Create and Deploy an app in 4 steps**
 
 1. `mkdir foo && cd foo`
 
-2. `yo angular-fullstack`
+2. `yo angular-juice`
 
-3. `yo angular-fullstack:deploy heroku`
+3. `yo angular-juice:deploy heroku`
 
 4. `cd heroku && git push heroku master`
 
@@ -67,19 +73,19 @@ That's it! Your app should be live and shareable. Type `heroku open` to view it.
 
 Available generators:
 
-* [angular-fullstack](#app) (aka [angular-fullstack:app](#app))
-* [angular-fullstack:controller](#controller)
-* [angular-fullstack:directive](#directive)
-* [angular-fullstack:filter](#filter)
-* [angular-fullstack:route](#route)
-* [angular-fullstack:service](#service)
-* [angular-fullstack:provider](#service)
-* [angular-fullstack:factory](#service)
-* [angular-fullstack:value](#service)
-* [angular-fullstack:constant](#service)
-* [angular-fullstack:decorator](#decorator)
-* [angular-fullstack:view](#view)
-* [angular-fullstack:deploy](#deploy)
+* [angular-juice](#app) (aka [angular-fullstack:app](#app))
+* [angular-juice:controller](#controller)
+* [angular-juice:directive](#directive)
+* [angular-juice:filter](#filter)
+* [angular-juice:route](#route)
+* [angular-juice:service](#service)
+* [angular-juice:provider](#service)
+* [angular-juice:factory](#service)
+* [angular-juice:value](#service)
+* [angular-juice:constant](#service)
+* [angular-juice:decorator](#decorator)
+* [angular-juice:view](#view)
+* [angular-juice:deploy](#deploy)
 
 **Note: Generators are to be run from the root directory of your app.**
 
@@ -88,7 +94,7 @@ Sets up a new AngularJS app, generating all the boilerplate you need to get star
 
 Example:
 ```bash
-yo angular-fullstack
+yo angular-juice
 ```
 
 ### Deploy
@@ -96,7 +102,7 @@ Initalizes a heroku app and generates a `heroku` folder which is ready to push t
 
 Example:
 ```bash
-yo angular-fullstack:deploy heroku
+yo angular-juice:deploy heroku
 ```
 
 After app modifications run:
@@ -110,7 +116,7 @@ Generates a controller and view, and configures a route in `app/scripts/app.js` 
 
 Example:
 ```bash
-yo angular-fullstack:route myroute
+yo angular-juice:route myroute
 ```
 
 Produces `app/scripts/controllers/myroute.js`:
@@ -130,7 +136,7 @@ Generates a controller in `app/scripts/controllers`.
 
 Example:
 ```bash
-yo angular-fullstack:controller user
+yo angular-juice:controller user
 ```
 
 Produces `app/scripts/controllers/user.js`:
@@ -144,7 +150,7 @@ Generates a directive in `app/scripts/directives`.
 
 Example:
 ```bash
-yo angular-fullstack:directive myDirective
+yo angular-juice:directive myDirective
 ```
 
 Produces `app/scripts/directives/myDirective.js`:
@@ -165,7 +171,7 @@ Generates a filter in `app/scripts/filters`.
 
 Example:
 ```bash
-yo angular-fullstack:filter myFilter
+yo angular-juice:filter myFilter
 ```
 
 Produces `app/scripts/filters/myFilter.js`:
@@ -182,7 +188,7 @@ Generates an HTML view file in `app/views`.
 
 Example:
 ```bash
-yo angular-fullstack:view user
+yo angular-juice:view user
 ```
 
 Produces `app/views/user.html`:
@@ -195,7 +201,7 @@ Generates an AngularJS service.
 
 Example:
 ```bash
-yo angular-fullstack:service myService
+yo angular-juice:service myService
 ```
 
 Produces `app/scripts/services/myService.js`:
@@ -205,14 +211,14 @@ angular.module('myMod').service('myService', function () {
 });
 ```
 
-You can also do `yo angular-fullstack:factory`, `yo angular-fullstack:provider`, `yo angular-fullstack:value`, and `yo angular-fullstack:constant` for other types of services.
+You can also do `yo angular-juice:factory`, `yo angular-fullstack:provider`, `yo angular-fullstack:value`, and `yo angular-fullstack:constant` for other types of services.
 
 ### Decorator
 Generates an AngularJS service decorator.
 
 Example:
 ```bash
-yo angular-fullstack:decorator serviceName
+yo angular-juice:decorator serviceName
 ```
 
 Produces `app/scripts/decorators/serviceNameDecorator.js`:
@@ -233,7 +239,7 @@ For generators that output views, the `--jade` option will output Jade instead o
 
 For example:
 ```bash
-yo angular-fullstack --jade
+yo angular-juice --jade
 ```
 
 Changes the rendering engine from EJS to Jade, and generates your views as jade files instead of HTML.
@@ -245,7 +251,7 @@ For generators that output scripts, the `--coffee` option will output CoffeeScri
 
 For example:
 ```bash
-yo angular-fullstack:controller user --coffee
+yo angular-juice:controller user --coffee
 ```
 
 Produces `app/scripts/controller/user.coffee`:
@@ -269,7 +275,7 @@ By default, generators produce unannotated code. Without annotations, AngularJS'
 
 #### Example
 ```bash
-yo angular-fullstack:controller user --minsafe
+yo angular-juice:controller user --minsafe
 ```
 
 Produces `app/controller/user.js`:
@@ -309,7 +315,7 @@ By default, new scripts are added to the index.html file. However, this may not 
 
 To skip adding them to the index, pass in the skip-add argument:
 ```bash
-yo angular-fullstack:service serviceName --skip-add
+yo angular-juice:service serviceName --skip-add
 ```
 
 ## Bower Components

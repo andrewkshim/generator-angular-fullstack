@@ -70,15 +70,15 @@ var Generator = module.exports = function Generator(args, options) {
     this.env.options.jade = this.options.jade;
   }
 
-  this.hookFor('angular-fullstack:common', {
+  this.hookFor('angular-juice:common', {
     args: args
   });
 
-  this.hookFor('angular-fullstack:main', {
+  this.hookFor('angular-juice:main', {
     args: args
   });
 
-  this.hookFor('angular-fullstack:controller', {
+  this.hookFor('angular-juice:controller', {
     args: args
   });
 
@@ -130,7 +130,7 @@ Generator.prototype.welcome = function welcome() {
   if (!this.options['skip-welcome-message']) {
     console.log(this.yeoman);
     console.log(
-      'Out of the box I include Bootstrap and some AngularJS recommended modules.\n'
+      'Out of the box I include Stylus/Nib and some AngularJS recommended modules.\n'
     );
 
     // Deprecation notice for minsafe
@@ -144,41 +144,16 @@ Generator.prototype.welcome = function welcome() {
   }
 };
 
-Generator.prototype.askForCompass = function askForCompass() {
+Generator.prototype.askForStylus = function askForCompass() {
   var cb = this.async();
 
   this.prompt([{
     type: 'confirm',
-    name: 'compass',
-    message: 'Would you like to use Sass (with Compass)?',
+    name: 'stylus',
+    message: 'Would you like to use Stylus (with Nib)?',
     default: true
   }], function (props) {
-    this.compass = props.compass;
-
-    cb();
-  }.bind(this));
-};
-
-Generator.prototype.askForBootstrap = function askForBootstrap() {
-  var compass = this.compass;
-  var cb = this.async();
-
-  this.prompt([{
-    type: 'confirm',
-    name: 'bootstrap',
-    message: 'Would you like to include Twitter Bootstrap?',
-    default: true
-  }, {
-    type: 'confirm',
-    name: 'compassBootstrap',
-    message: 'Would you like to use the Sass version of Twitter Bootstrap?',
-    default: true,
-    when: function (props) {
-      return props.bootstrap && compass;
-    }
-  }], function (props) {
-    this.bootstrap = props.bootstrap;
-    this.compassBootstrap = props.compassBootstrap;
+    this.stylus = props.stylus;
 
     cb();
   }.bind(this));
@@ -268,17 +243,9 @@ Generator.prototype.readIndex = function readIndex() {
   }
 };
 
-Generator.prototype.bootstrapFiles = function bootstrapFiles() {
-  var sass = this.compass;
-  var mainFile = 'main.' + (sass ? 's' : '') + 'css';
-
-  if (this.bootstrap && !sass) {
-    this.copy('fonts/glyphicons-halflings-regular.eot', 'app/fonts/glyphicons-halflings-regular.eot');
-    this.copy('fonts/glyphicons-halflings-regular.ttf', 'app/fonts/glyphicons-halflings-regular.ttf');
-    this.copy('fonts/glyphicons-halflings-regular.svg', 'app/fonts/glyphicons-halflings-regular.svg');
-    this.copy('fonts/glyphicons-halflings-regular.woff', 'app/fonts/glyphicons-halflings-regular.woff');
-  }
-
+Generator.prototype.styles = function styles() {
+  var styl = this.stylus;
+  var mainFile = 'main.' + (styl ? 'styl' : 'css');
   this.copy('styles/' + mainFile, 'app/styles/' + mainFile);
 };
 

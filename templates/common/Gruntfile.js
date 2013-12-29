@@ -66,10 +66,11 @@ module.exports = function (grunt) {
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
-      },<% } %><% if (compass) { %>
-      compass: {
-        files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+      },<% } %><% if (stylus) { %>
+      stylus: {
+        livereload: true,
+        files: ['<%%= yeoman.app %>/styles/{,*/}*.{styl}'],
+        tasks: ['newer:stylus:dist', 'autoprefixer']
       },<% } else { %>
       styles: {
         files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
@@ -194,29 +195,18 @@ module.exports = function (grunt) {
           ext: '.js'
         }]
       }
-    },<% } %>
-    <% if (compass) { %>
+    },<% } %><% if (stylus) { %>
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%%= yeoman.app %>/images',
-        javascriptsDir: '<%%= yeoman.app %>/scripts',
-        fontsDir: '<%%= yeoman.app %>/styles/fonts',
-        importPath: '<%%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
+    stylus: {
+      options: { },
       dist: {
-        options: {
-          generatedImagesDir: '<%%= yeoman.dist %>/images/generated'
-        }
+        files: [{
+          expand: true,
+          cwd: '<%%= yeoman.app %>/styles',
+          src: '{,*/}*.styl',
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       },
       server: {
         options: {
@@ -376,18 +366,18 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [<% if (coffee) { %>
-        'coffee:dist',<% } %><% if (compass) { %>
-        'compass:server'<% } else { %>
+        'coffee:dist',<% } %><% if (stylus) { %>
+        'stylus:dist'<% } else { %>
         'copy:styles'<% } %>
       ],
       test: [<% if (coffee) { %>
-        'coffee',<% } %><% if (compass) { %>
-        'compass'<% } else { %>
+        'coffee',<% } %><% if (stylus) { %>
+        'stylus'<% } else { %>
         'copy:styles'<% } %>
       ],
       dist: [<% if (coffee) { %>
-        'coffee',<% } %><% if (compass) { %>
-        'compass:dist',<% } else { %>
+        'coffee',<% } %><% if (stylus) { %>
+        'stylus:dist',<% } else { %>
         'copy:styles',<% } %>
         'imagemin',
         'svgmin',

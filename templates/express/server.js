@@ -3,7 +3,9 @@
 // Module dependencies.
 var express = require('express')<% if (mongo) { %>,  
     path = require('path'),
-    fs = require('fs')<% } %>;
+    fs = require('fs')<% } %>,<% if (stylus) { %>
+    stylus = require('stylus'),
+    nib = require('nib')<% } %>;
 
 var app = express();
 <% if (mongo) { %>
