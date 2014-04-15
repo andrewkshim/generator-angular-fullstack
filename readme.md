@@ -7,8 +7,8 @@ This generator is simply a modification of
 [angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack)
 to use Stylus/Nib. 
 
-I wanted a yeoman generator that used __J__ade, 
-__S__tylus, __C__offeescript, and __E__xpress, so I 
+I wanted a yeoman generator that used Jade, 
+Stylus, Coffeescript, and Express, so I 
 created this. I was about to name it "angular-jsce" 
 but that didn't look good and "jsce" sounds
 like "juice" hence "angular-juice".
